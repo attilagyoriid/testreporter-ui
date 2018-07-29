@@ -1,0 +1,30 @@
+<div class="container" *ngIf="bikes;else noBikes">
+  <table class="table table-bordered table-inverse">
+    <tr>
+      <th>Owner Name</th>
+      <th>Email</th>
+      <th>Model</th>
+      <th class="text-right">Purchase Price</th>
+    </tr>
+    <tr *ngFor="let bike of bikes">
+      <td routerLinkActive="active">
+        <!--<a [routerLink]="['/admin/view',bike.id]">{{bike.name}}</a>-->
+        <!--<a [routerLink]="['/admin']" routerLinkActive="active">{{bike.name}}</a>-->
+        <div class="pointer" (click)="gotoProductDetails('/admin/view',bike.id)">{{bike.name}}</div>
+      </td>
+      <td>
+        {{bike.email}}
+      </td>
+      <td>
+        {{bike.model}}
+      </td>
+      <td class="text-right">
+        {{bike.purchasePrice}}
+      </td>
+    </tr>
+  </table>
+  <router-outlet></router-outlet>
+</div>
+<ng-template #noBikes>
+  <p class="alert alert-danger test-center">{{errorMsg}}</p>
+</ng-template>
