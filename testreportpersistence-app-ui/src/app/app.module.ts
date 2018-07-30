@@ -13,6 +13,7 @@ import {AppErrorHandler} from './handlers/app-errorhandler.service';
 import {ToastrModule} from 'ngx-toastr';
 import { CallbackComponent } from './components/callback/callback.component';
 import {AuthService} from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {AuthService} from './services/auth.service';
     //   progressBar: true
     // })
   ],
-  providers: [BikeService, AuthService
+  providers: [BikeService, AuthService, AuthGuard
     // , { provide: ErrorHandler, useClass: AppErrorHandler}
     ],
   bootstrap: [AppComponent]
