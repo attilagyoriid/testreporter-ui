@@ -1,6 +1,5 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,7 +16,10 @@ export class BikeService {
   private bikesUrlPrefix = 'server/api/v1/bikes/';
 
   getBikes() {
-    return this.http.get(this.bikesUrl);
+    const accessToken = localStorage.getItem('access_token');
+    return this.http.get(this.bikesUrl,
+      {headers: new HttpHeaders().set('Authorization' , 'Bearer ' + accessToken)}
+    );
   }
 
   getBikeById(id: number) {
